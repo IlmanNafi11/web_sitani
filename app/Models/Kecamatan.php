@@ -16,16 +16,6 @@ class Kecamatan extends Model
     ];
 
     /**
-     * Mutator untuk mengatur attribute nama selalu menggunakan style title case
-     * @param mixed $value
-     * @return void
-     */
-    public function setNamaAttribute($value)
-    {
-        $this->attributes['nama'] = Str::title($value);
-    }
-
-    /**
      * Relasi dengan table desa
      * @return \Illuminate\Database\Eloquent\Relations\HasOne<Desa, Kecamatan>
      */
