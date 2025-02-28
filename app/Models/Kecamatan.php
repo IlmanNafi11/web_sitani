@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Kecamatan extends Model
@@ -13,6 +14,16 @@ class Kecamatan extends Model
     protected $fillable = [
         "nama"
     ];
+
+    /**
+     * Mutator untuk mengatur attribute nama selalu menggunakan style title case
+     * @param mixed $value
+     * @return void
+     */
+    public function setNamaAttribute($value)
+    {
+        $this->attributes['nama'] = Str::title($value);
+    }
 
     /**
      * Relasi dengan table desa
