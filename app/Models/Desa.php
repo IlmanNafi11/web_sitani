@@ -23,4 +23,13 @@ class Desa extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    /**
+     * Relasi dengan table kelompok tani
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<KelompokTani, Desa>
+     */
+    public function kelompokTani()
+    {
+        return $this->hasMany(KelompokTani::class);
+    }
 }

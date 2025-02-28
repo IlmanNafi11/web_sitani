@@ -22,4 +22,13 @@ class Kecamatan extends Model
     {
         return $this->hasOne(Desa::class);
     }
+
+    /**
+     * Relasi dengan table kelompok tani
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<KelompokTani, Kecamatan>
+     */
+    public function kelompokTani()
+    {
+        return $this->hasMany(KelompokTani::class);
+    }
 }
