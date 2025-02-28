@@ -2,16 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DesaResource\Pages;
-use App\Filament\Resources\DesaResource\RelationManagers;
-use App\Models\Desa;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Desa;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Pages\Actions\EditAction;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use App\Filament\Resources\DesaResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\DesaResource\Pages\EditDesa;
+use App\Filament\Resources\DesaResource\Pages\ListDesas;
+use App\Filament\Resources\DesaResource\Pages\CreateDesa;
+use App\Filament\Resources\DesaResource\RelationManagers;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 
 class DesaResource extends Resource
 {
@@ -23,7 +32,13 @@ class DesaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')
+                ->label('Nama Desa')
+                ->placeholder('Nama Desa'),
+                Select::make('kecamatan_id')
+                ->label('Kecamatan')
+                ->relationship('kecamatan', 'nama')
+                ->searchable(),
             ]);
     }
 
@@ -31,13 +46,23 @@ class DesaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama')
+                ->label('Desa')
+                ->searchable()
+                ->sortable(),
+                TextColumn::make('kecamatan.nama')
+                ->label('Kecamatan')
+                ->searchable()
+                ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button(),
+                Tables\Actions\DeleteAction::make()
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
