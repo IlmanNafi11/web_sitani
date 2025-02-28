@@ -14,4 +14,13 @@ class Desa extends Model
         "nama",
         "kecamatan_id"
     ];
+
+    /**
+     * Relasi dengan table kecamatan
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Kecamatan, Desa>
+     */
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
 }

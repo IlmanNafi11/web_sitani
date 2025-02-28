@@ -13,4 +13,13 @@ class Kecamatan extends Model
     protected $fillable = [
         "nama"
     ];
+
+    /**
+     * Relasi dengan table desa
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Desa, Kecamatan>
+     */
+    public function desa()
+    {
+        return $this->hasOne(Desa::class);
+    }
 }
