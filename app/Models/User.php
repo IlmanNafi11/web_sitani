@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relasi dengan table penyuluh
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Penyuluh, User>
+     */
+    public function penyuluh()
+    {
+        return $this->hasOne(Penyuluh::class);
+    }
 }
