@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,7 +26,12 @@ class KomoditasResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')
+                ->label('Nama Komoditas')
+                ->placeholder('Nama komoditas'),
+                Textarea::make('deskripsi')
+                ->label('Deskripsi')
+                ->placeholder('Deskripsi Komoditas'),
             ]);
     }
 
@@ -33,13 +39,19 @@ class KomoditasResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama')
+                ->label('Komoditas')
+                ->description(fn ($record) => $record->deskripsi ?? 'Tidak ada deskripsi')
+                ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button(),
+                Tables\Actions\DeleteAction::make()
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
