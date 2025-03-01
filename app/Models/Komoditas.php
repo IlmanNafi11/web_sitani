@@ -14,4 +14,13 @@ class Komoditas extends Model
         'nama',
         'deskripsi',
     ];
+
+    /**
+     * Relasi dengan table bibit berkualitas
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<BibitBerkualitas, Komoditas>
+     */
+    public function bibitBerkualitas()
+    {
+        return $this->hasMany(BibitBerkualitas::class);
+    }
 }
