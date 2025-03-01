@@ -2,16 +2,25 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use App\Models\KelompokTani;
+use Filament\Resources\Resource;
+use Filament\Pages\Actions\EditAction;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\KelompokTaniResource\Pages;
 use App\Filament\Resources\KelompokTaniResource\RelationManagers;
-use App\Models\KelompokTani;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\KelompokTaniResource\Pages\EditKelompokTani;
+use App\Filament\Resources\KelompokTaniResource\Pages\ListKelompokTanis;
+use App\Filament\Resources\KelompokTaniResource\Pages\CreateKelompokTani;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 
 class KelompokTaniResource extends Resource
 {
@@ -23,7 +32,21 @@ class KelompokTaniResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')
+                ->label('Nama Kelompok Tani')
+                ->placeholder('Nama kelompok tani'),
+                Select::make('desa_id')
+                ->label('Desa Asal')
+                ->placeholder('Desa asal kelompok tani')
+                ->relationship('desa', 'nama')
+                ->preload()
+                ->searchable(),
+                Select::make('kecamatan_id')
+                ->label('Kecamatan Asal')
+                ->placeholder('Kecamatan asal kelompok tani')
+                ->relationship('kecamatan', 'nama')
+                ->preload()
+                ->searchable(),
             ]);
     }
 
@@ -31,13 +54,27 @@ class KelompokTaniResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama')
+                ->label('Kelompok Tani')
+                ->searchable()
+                ->sortable(),
+                TextColumn::make('desa.nama')
+                ->label('Desa')
+                ->searchable()
+                ->sortable(),
+                TextColumn::make('kecamatan.nama')
+                ->label('Kecamatan')
+                ->searchable()
+                ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button(),
+                Tables\Actions\DeleteAction::make()
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
