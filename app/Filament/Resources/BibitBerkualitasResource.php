@@ -6,9 +6,13 @@ use App\Filament\Resources\BibitBerkualitasResource\Pages;
 use App\Filament\Resources\BibitBerkualitasResource\RelationManagers;
 use App\Models\BibitBerkualitas;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,7 +27,18 @@ class BibitBerkualitasResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')
+                ->label('Nama Bibit')
+                ->placeholder('Nama bibit'),
+                Select::make('komoditas_id')
+                ->label('Komoditas')
+                ->placeholder('Komoditas bibit')
+                ->searchable()
+                ->preload()
+                ->relationship('komoditas', 'nama'),
+                Textarea::make('deskripsi')
+                ->label('Deskripsi')
+                ->placeholder('Deskripsi bibit')
             ]);
     }
 
@@ -31,13 +46,21 @@ class BibitBerkualitasResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama')
+                ->label('Bibit')
+                ->description(fn($record) => $record->deskripsi ?? 'Tidak ada deskripsi')
+                ->searchable(),
+                TextColumn::make('komoditas.nama')
+                ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button(),
+                Tables\Actions\DeleteAction::make()
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
