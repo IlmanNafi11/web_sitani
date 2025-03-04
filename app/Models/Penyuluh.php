@@ -13,7 +13,8 @@ class Penyuluh extends Model
      */
     protected $fillable = [
         "user_id",
-        "kecamatan_id",
+        "penyuluh_terdaftar_id",
+        "path_profil",
     ];
 
     /**
