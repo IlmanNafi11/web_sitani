@@ -20,6 +20,7 @@ use App\Filament\Resources\KelompokTaniResource\Pages\ListKelompokTanis;
 use App\Filament\Resources\KelompokTaniResource\Pages\CreateKelompokTani;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Get;
 use Filament\Tables\Columns\TextColumn;
 
 class KelompokTaniResource extends Resource
@@ -33,20 +34,33 @@ class KelompokTaniResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama')
-                ->label('Nama Kelompok Tani')
-                ->placeholder('Nama kelompok tani'),
+                    ->label('Nama Kelompok Tani')
+                    ->placeholder('Nama kelompok tani'),
                 Select::make('desa_id')
-                ->label('Desa Asal')
-                ->placeholder('Desa asal kelompok tani')
-                ->relationship('desa', 'nama')
-                ->preload()
-                ->searchable(),
+                    ->label('Desa Asal')
+                    ->placeholder('Desa asal kelompok tani')
+                    ->relationship('desa', 'nama')
+                    ->preload()
+                    ->searchable(),
                 Select::make('kecamatan_id')
-                ->label('Kecamatan Asal')
-                ->placeholder('Kecamatan asal kelompok tani')
-                ->relationship('kecamatan', 'nama')
-                ->preload()
-                ->searchable(),
+                    ->label('Kecamatan Asal')
+                    ->placeholder('Kecamatan asal kelompok tani')
+                    ->relationship('kecamatan', 'nama')
+                    ->preload()
+                    ->searchable(),
+                Select::make('penyuluh_terdaftar_id')
+                    ->label('Penyuluh')
+                    ->placeholder('Penyuluh kelompok tani')
+                    ->searchable()
+                    ->preload()
+                    ->relationship('penyuluhTerdaftar', 'nama', function (Builder $query, Get $get) {
+                        $kecamatan_id = $get('kecamatan_id');
+                        if ($kecamatan_id) {
+                            $query->where('kecamatan_id', $kecamatan_id);
+                        }
+                        return $query;
+                    })
+                    ->multiple(),
             ]);
     }
 
@@ -55,26 +69,29 @@ class KelompokTaniResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')
-                ->label('Kelompok Tani')
-                ->searchable()
-                ->sortable(),
+                    ->label('Kelompok Tani')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('desa.nama')
-                ->label('Desa')
-                ->searchable()
-                ->sortable(),
+                    ->label('Desa')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('kecamatan.nama')
-                ->label('Kecamatan')
-                ->searchable()
-                ->sortable(),
+                    ->label('Kecamatan')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('penyuluhTerdaftar.nama')
+                    ->label('Penyuluh')
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->button(),
+                    ->button(),
                 Tables\Actions\DeleteAction::make()
-                ->button(),
+                    ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
