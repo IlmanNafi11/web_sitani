@@ -16,4 +16,13 @@ class Admin extends Model
         'alamat',
         'user_id',
     ];
+
+    /**
+     * Relasi dengan table user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, Admin>
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
