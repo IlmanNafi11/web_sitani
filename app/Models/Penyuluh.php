@@ -25,5 +25,13 @@ class Penyuluh extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
+    /**
+     * Relasi dengan table penyuluh terdaftar
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<PenyuluhTerdaftar, Penyuluh>
+     */
+    public function penyuluhTerdaftar()
+    {
+        return $this->belongsTo(PenyuluhTerdaftar::class);
+    }
 }
