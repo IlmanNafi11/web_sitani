@@ -42,4 +42,13 @@ class LaporanKondisiLapangan extends Model
     {
         return $this->belongsTo(Komoditas::class);
     }
+
+    /**
+     * Relasi dengan table laporan kondisi detail
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<LaporanKondisiLapanganDetail, LaporanKondisiLapangan>
+     */
+    public function laporanKondisiLapanganDetail()
+    {
+        return $this->hasOne(LaporanKondisiLapanganDetail::class);
+    }
 }

@@ -20,4 +20,13 @@ class LaporanKondisiLapanganDetail extends Model
         'foto_bibit',
         'lokasi_lahan',
     ];
+
+    /**
+     * Relasi dengan table laporan kondisi
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<LaporanKondisiLapangan, LaporanKondisiLapanganDetail>
+     */
+    public function laporanKondisiLapangan()
+    {
+        return $this->belongsTo(LaporanKondisiLapangan::class);
+    }
 }
