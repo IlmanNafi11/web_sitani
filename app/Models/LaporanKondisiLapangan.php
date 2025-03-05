@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaporanKondisiLapangan extends Model
 {
+
+    protected $table = "laporan_kondisis";
+
     /**
      * Tambahkan attribute yang dapat dimass assigment kedalam array fillable
      * @var array
