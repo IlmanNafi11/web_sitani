@@ -25,13 +25,5 @@ class Penyuluh extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * Relasi dengan table kecamatan
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<kecamatan, Penyuluh>
-     */
-    public function kecamatan()
-    {
-        return $this->belongsTo(Kecamatan::class);
-    }
+    
 }
