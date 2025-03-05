@@ -33,4 +33,12 @@ class Kecamatan extends Model
         return $this->hasMany(KelompokTani::class);
     }
 
+    /**
+     * Relasi dengan table penyuluh terdaftar
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<PenyuluhTerdaftar, Kecamatan>
+     */
+    public function penyuluhTerdaftar()
+    {
+        return $this->hasMany(PenyuluhTerdaftar::class);
+    }
 }

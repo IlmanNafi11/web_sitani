@@ -25,4 +25,13 @@ class PenyuluhTerdaftar extends Model
     {
         return $this->hasOne(Penyuluh::class);
     }
+
+    /**
+     * Relasi dengan table kecamatan
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Kecamatan, PenyuluhTerdaftar>
+     */
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
 }
