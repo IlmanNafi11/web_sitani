@@ -33,4 +33,10 @@ class KelompokTani extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    public function penyuluhKelompokTani()
+    {
+        return $this->belongsToMany(PenyuluhTerdaftar::class, 'penyuluh_kelompok_tanis', 'kelompok_tani_id', 'penyuluh_terdaftar_id')
+            ->withTimestamps();
+    }
 }
