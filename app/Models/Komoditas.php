@@ -23,4 +23,13 @@ class Komoditas extends Model
     {
         return $this->hasMany(BibitBerkualitas::class);
     }
+
+    /**
+     * Relasi dengan table laporan kondisi lapangan
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<LaporanKondisiLapangan, Komoditas>
+     */
+    public function laporanKondisiLapangan()
+    {
+        return $this->hasMany(LaporanKondisiLapangan::class);
+    }
 }

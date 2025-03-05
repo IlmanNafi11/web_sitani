@@ -34,4 +34,13 @@ class Penyuluh extends Model
     {
         return $this->belongsTo(PenyuluhTerdaftar::class);
     }
+
+    /**
+     * Relasi dengan table laporan kondisi lapangan
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<LaporanKondisiLapangan, Penyuluh>
+     */
+    public function laporanKondisiLapangan()
+    {
+        return $this->hasMany(LaporanKondisiLapangan::class);
+    }
 }
