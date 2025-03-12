@@ -48,6 +48,9 @@ class KomoditasResource extends Resource
                 ->label('Komoditas')
                 ->description(fn ($record) => $record->deskripsi ?? 'Tidak ada deskripsi')
                 ->searchable(),
+                TextColumn::make('musim')
+                ->label('Jumlah musim')
+                ->sortable(),
             ])
             ->filters([
                 //
