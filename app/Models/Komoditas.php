@@ -13,6 +13,7 @@ class Komoditas extends Model
     protected $fillable = [
         'nama',
         'deskripsi',
+        'musim',
     ];
 
     /**
