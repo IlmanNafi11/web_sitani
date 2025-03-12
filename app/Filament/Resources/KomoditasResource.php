@@ -29,9 +29,14 @@ class KomoditasResource extends Resource
                 TextInput::make('nama')
                 ->label('Nama Komoditas')
                 ->placeholder('Nama komoditas'),
+                TextInput::make('musim')
+                ->label('Jumlah musim')
+                ->placeholder('Jumlah musim dalam satu tahun')
+                ->numeric(),
                 Textarea::make('deskripsi')
                 ->label('Deskripsi')
-                ->placeholder('Deskripsi Komoditas'),
+                ->placeholder('Deskripsi Komoditas')
+                ->columnSpanFull(),
             ]);
     }
 
