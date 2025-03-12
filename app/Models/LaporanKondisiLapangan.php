@@ -17,6 +17,7 @@ class LaporanKondisiLapangan extends Model
         'kelompok_tani_id',
         'komoditas_id',
         'penyuluh_id',
+        'status',
     ];
 
     /**
