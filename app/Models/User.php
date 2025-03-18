@@ -10,8 +10,9 @@ use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements HasName
+class User extends Authenticatable implements HasName, JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -39,7 +40,7 @@ class User extends Authenticatable implements HasName
 
     /**
      * Mendapatkan nama user yang saat ini login
-     * 
+     *
      * @link https://filamentphp.com/docs/3.x/panels/users#configuring-the-users-name-attribute
      * @return string
      */
@@ -60,6 +61,16 @@ class User extends Authenticatable implements HasName
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
     /**
