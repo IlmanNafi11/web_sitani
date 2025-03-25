@@ -1,4 +1,5 @@
 <?php
+namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -16,7 +17,7 @@ class UserRepository implements UserRepositoryInterface{
     /**
      * @inheritDoc
      */
-    public function findById($id): mixed
+    public function getById($id): mixed
     {
         return User::where('id', $id)->first();
     }
