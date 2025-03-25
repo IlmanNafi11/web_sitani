@@ -10,9 +10,9 @@ interface KelompokTaniRepositoryInterface
     /**
      * Mengambil seluruh data kelompok tani berdasarkan penyuluh terdaftar id
      * @param int $id ID penyuluh terdaftar
-     * @return Collection
+     * @return mixed
      */
-    public function getAllByPenyuluh($id): Collection;
+    public function getAllByPenyuluh($id): mixed;
 
     /**
      * Mengambil data kelompok tani berdasarkan id
