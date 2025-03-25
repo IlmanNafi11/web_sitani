@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 
 class KelompokTaniService{
     protected KelompokTaniRepositoryInterface $kelompokTaniRepository;
@@ -20,6 +21,18 @@ class KelompokTaniService{
             ], 404);
         }
 
-        return response()->json($kelompokTani->except('pivot'));
+        return response()->json($kelompokTani);
+    }
+
+    public function getById($id): JsonResponse
+    {
+        $kelompokTani = $this->kelompokTaniRepository->getById($id);
+        if (!$kelompokTani) {
+            return response()->json([
+                'message' => 'Kelompok Tani Not Found'
+            ]);
+        }
+
+        return response()->json($kelompokTani->makeHidden('created_at', 'updated_at'));
     }
 }
