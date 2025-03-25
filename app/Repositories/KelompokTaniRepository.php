@@ -1,13 +1,16 @@
 <?php
+namespace App\Repositories;
 
 use App\Models\KelompokTani;
 use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
 
 class KelompokTaniRepository implements KelompokTaniRepositoryInterface{
 
-    public function getAllByPenyuluh($id): Illuminate\Database\Eloquent\Collection
+    public function getAllByPenyuluh($id): mixed
     {
-        return KelompokTani::with('penyuluhTerdaftar')->where('id', $id)->get();
+        return KelompokTani::whereHas('penyuluhTerdaftar', function ($query) use ($id) {
+            $query->whereIn('penyuluh_terdaftars.id', $id);
+        })->with('penyuluhTerdaftar')->get();
     }
 
     public function getById($id): KelompokTani
