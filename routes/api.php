@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authentication\AuthController;
 use App\Http\Controllers\Authentication\AuthPhoneController;
+use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\KomoditasController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -15,5 +16,6 @@ Route::group([
     Route::get('/user/{id}', [UserController::class, 'getUserById'])->whereNumber('id');
     Route::get('/komoditas', [KomoditasController::class, 'getAll']);
     Route::get('/komoditas/{id}', [KomoditasController::class, 'getById'])->whereNumber('id');
+    Route::get('/kelompok-tani', [KelompokTaniController::class, 'getAll']);
 });
 
