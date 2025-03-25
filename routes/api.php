@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authentication\AuthController;
 use App\Http\Controllers\Authentication\AuthPhoneController;
+use App\Http\Controllers\BibitBerkualitasController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\KomoditasController;
 use App\Http\Controllers\UserController;
@@ -18,5 +19,6 @@ Route::group([
     Route::get('/komoditas/{id}', [KomoditasController::class, 'getById'])->whereNumber('id');
     Route::get('/kelompok-tani', [KelompokTaniController::class, 'getAllByPenyuluh']);
     Route::get('/kelompok-tani/{id}', [KelompokTaniController::class, 'getById']);
+    Route::get('/bibit', [BibitBerkualitasController::class, 'getAll']);
 });
 
