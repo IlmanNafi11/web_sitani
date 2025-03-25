@@ -21,6 +21,6 @@ Route::group([
     Route::get('/kelompok-tani', [KelompokTaniController::class, 'getAllByPenyuluh']);
     Route::get('/kelompok-tani/{id}', [KelompokTaniController::class, 'getById']);
     Route::get('/bibit', [BibitBerkualitasController::class, 'getAll']);
-    Route::get('/laporan-kondisi', [LaporanKondisiController::class, 'sendReport']);
+    Route::post('/laporan-kondisi', [LaporanKondisiController::class, 'sendReport']);
 });
 
