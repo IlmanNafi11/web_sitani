@@ -14,18 +14,25 @@ class KomoditasService{
 
     public function getAll():JsonResponse
     {
-        return response()->json($this->komoditasRepository->getAll());
+        $data = $this->komoditasRepository->getAll();
+        if ($data) {
+            return response()->json($data->makeHidden(['created_at', 'updated_at']));
+        }
+        return response()->json([
+            'message' => 'Data is empty'
+        ]);
     }
 
     public function getById($id): JsonResponse
     {
         $data = $this->komoditasRepository->getById($id);
+
         if (!$data) {
             return response()->json([
                 'message' => 'Komoditas Not Found',
-            ]);
+            ], 404);
         }
 
-        return response()->json([$data]);
+        return response()->json($data->makeHidden(['created_at', 'updated_at']));
     }
 }
