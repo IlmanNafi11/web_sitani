@@ -16,6 +16,6 @@ Route::group([
     Route::get('/user/{id}', [UserController::class, 'getUserById'])->whereNumber('id');
     Route::get('/komoditas', [KomoditasController::class, 'getAll']);
     Route::get('/komoditas/{id}', [KomoditasController::class, 'getById'])->whereNumber('id');
-    Route::get('/kelompok-tani', [KelompokTaniController::class, 'getAll']);
+    Route::get('/kelompok-tani', [KelompokTaniController::class, 'getAllByPenyuluh']);
 });
 
