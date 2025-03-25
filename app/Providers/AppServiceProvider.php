@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
-use App\Repositories\KelompokTaniRepository;
 use App\Repositories\UserRepository;
-use BibitBerkualitasRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AuthPhoneRepository;
-use App\Repositories\Interfaces\AuthPhone;
-use App\Repositories\Interfaces\BibitRepositoryInterface;
-use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
-use App\Repositories\Interfaces\KomoditasRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\KomoditasRepository;
+use App\Repositories\Interfaces\AuthPhone;
+use App\Repositories\KelompokTaniRepository;
+use App\Repositories\BibitBerkualitasRepository;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\BibitRepositoryInterface;
+use App\Repositories\Interfaces\KomoditasRepositoryInterface;
+use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
