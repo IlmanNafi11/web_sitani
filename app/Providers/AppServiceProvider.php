@@ -6,7 +6,9 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AuthPhoneRepository;
 use App\Repositories\Interfaces\AuthPhone;
+use App\Repositories\Interfaces\KomoditasRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\KomoditasRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthPhone::class, AuthPhoneRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(KomoditasRepositoryInterface::class, KomoditasRepository::class);
     }
 
     /**
