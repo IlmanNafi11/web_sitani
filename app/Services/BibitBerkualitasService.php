@@ -25,6 +25,6 @@ class BibitBerkualitasService{
             ], 404);
         }
 
-        return response()->json($data);
+        return response()->json($data->makeHidden(['created_at', 'updated_at']));
     }
 }
