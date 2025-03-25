@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Repositories\KelompokTaniRepository;
 use App\Repositories\UserRepository;
+use BibitBerkualitasRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AuthPhoneRepository;
 use App\Repositories\Interfaces\AuthPhone;
+use App\Repositories\Interfaces\BibitRepositoryInterface;
 use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
 use App\Repositories\Interfaces\KomoditasRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(KomoditasRepositoryInterface::class, KomoditasRepository::class);
         $this->app->bind(KelompokTaniRepositoryInterface::class, KelompokTaniRepository::class);
+        $this->app->bind(BibitRepositoryInterface::class, BibitBerkualitasRepository::class);
     }
 
     /**
