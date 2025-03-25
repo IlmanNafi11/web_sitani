@@ -13,7 +13,7 @@ class KelompokTaniRepository implements KelompokTaniRepositoryInterface{
         })->with('penyuluhTerdaftar')->get();
     }
 
-    public function getById($id): KelompokTani
+    public function getById($id): ?KelompokTani
     {
         return KelompokTani::where('id', $id)->first();
     }

@@ -19,5 +19,5 @@ interface KelompokTaniRepositoryInterface
      * @param int $id ID kelompok tani
      * @return KelompokTani
      */
-    public function getById($id): KelompokTani;
+    public function getById($id): ?KelompokTani;
 }
