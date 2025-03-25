@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Authentication;
 
 use App\Rules\PhoneRules;
-use App\services\AuthPhoneService;
+use App\Services\AuthPhoneService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

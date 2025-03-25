@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IdFormRequest;
 use Illuminate\Http\Request;
-use App\services\UserService;
+use App\Services\UserService;
 
 
 class UserController extends Controller
