@@ -15,7 +15,7 @@ interface UserRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function findById($id): mixed;
+    public function getById($id): mixed;
 
 
     /**
