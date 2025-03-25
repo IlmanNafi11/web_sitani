@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
+use App\Models\Komoditas;
 use Illuminate\Database\Eloquent\Collection;
 
 interface KomoditasRepositoryInterface
@@ -17,5 +18,5 @@ interface KomoditasRepositoryInterface
      * @param int $id komoditas id
      * @return Collection|array
      */
-    public function getById($id):Collection|array|null;
+    public function getById($id): Komoditas|null;
 }

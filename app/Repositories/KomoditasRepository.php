@@ -12,8 +12,8 @@ class KomoditasRepository implements KomoditasRepositoryInterface{
         return Komoditas::all();
     }
 
-    
-    public function getById($id): Collection|array|null
+
+    public function getById($id):Komoditas|null
     {
         return Komoditas::where('id', $id)->first();
     }
