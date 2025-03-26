@@ -13,6 +13,9 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\BibitRepositoryInterface;
 use App\Repositories\Interfaces\KomoditasRepositoryInterface;
 use App\Repositories\Interfaces\KelompokTaniRepositoryInterface;
+use App\Repositories\Interfaces\LaporanInterface;
+use App\Repositories\LaporanKondisiRepository;
+use App\Services\LaporanKondisiService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(KomoditasRepositoryInterface::class, KomoditasRepository::class);
         $this->app->bind(KelompokTaniRepositoryInterface::class, KelompokTaniRepository::class);
         $this->app->bind(BibitRepositoryInterface::class, BibitBerkualitasRepository::class);
+        $this->app->when(LaporanKondisiService::class)->needs(LaporanInterface::class)->give(LaporanKondisiRepository::class);
     }
 
     /**
