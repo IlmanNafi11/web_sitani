@@ -53,6 +53,6 @@ class LaporanKondisiLapangan extends Model
      */
     public function laporanKondisiLapanganDetail()
     {
-        return $this->hasOne(LaporanKondisiLapanganDetail::class);
+        return $this->hasOne(LaporanKondisiLapanganDetail::class, 'laporan_kondisi_id');
     }
 }
