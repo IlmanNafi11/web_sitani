@@ -22,7 +22,7 @@ class LaporanKondisiObserver
             $data = request()->all();
             $file = $data['foto_bibit'];
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/foto_bibit/' . $data['kelompok_tani_id'] . '/' . $filename);
+            $path = $file->storeAs('foto_bibit/' . $data['kelompok_tani_id'], $filename, 'public');
             LaporanKondisiLapanganDetail::create([
                 'laporan_kondisi_id' => $laporanKondisiLapangan->id,
                 'luas_lahan' => $data['luas_lahan'],
