@@ -21,6 +21,10 @@ class LaporanKondisiLapanganDetail extends Model
         'lokasi_lahan',
     ];
 
+    protected $casts = [
+        'estimasi_panen' => 'date'
+    ];
+
     /**
      * Relasi dengan table laporan kondisi
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<LaporanKondisiLapangan, LaporanKondisiLapanganDetail>
