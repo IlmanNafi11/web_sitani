@@ -26,6 +26,7 @@ class LaporanKondisiObserver
             LaporanKondisiLapanganDetail::create([
                 'laporan_kondisi_id' => $laporanKondisiLapangan->id,
                 'luas_lahan' => $data['luas_lahan'],
+                'estimasi_panen' => $data['estimasi_panen'],
                 'jenis_bibit' => $data['jenis_bibit'],
                 'foto_bibit' => $path,
                 'lokasi_lahan' => $data['lokasi_lahan'],
