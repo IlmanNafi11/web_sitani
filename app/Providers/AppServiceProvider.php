@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\LaporanKondisiLapangan;
+use App\Observers\LaporanKondisiObserver;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\AuthPhoneRepository;
@@ -37,6 +39,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        LaporanKondisiLapangan::observe(LaporanKondisiObserver::class);
     }
 }
